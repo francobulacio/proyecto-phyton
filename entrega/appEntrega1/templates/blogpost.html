@@ -1,0 +1,32 @@
+{% extends "parent.html" %}
+
+{% load static %}
+
+{% block title %}
+Blog Post
+{% endblock %}
+
+{% block logo %}
+{% endblock %}
+
+{% block content %}
+{% if blogposts %}
+<div class="row">
+    {% for blogpost in blogposts%}
+        <!-- Blog post-->
+        <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Title: {{ blogpost.title }}</h2>
+                <h4 class="card-title h4">Subtitle: {{ blogpost.subtitle }}</h4>
+                <div class="small text-muted">Category: {{ blogpost.category }}</div>
+                <p class="card-text">Content: {{ blogpost.content }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <h1>No post were found</h1>
+{% endif %}
+{% endblock %}

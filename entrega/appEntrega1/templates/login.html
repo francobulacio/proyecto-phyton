@@ -1,0 +1,31 @@
+{% extends "parent.html" %}
+
+{% load static %}
+
+{% block title %}
+Ingreso!
+{% endblock %}
+
+{% block logo %}
+{% endblock %}
+
+{% block content %}
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1>Ingreso!</h1>
+                <p class="lead mb-0">Ingresa a tu cuenta!</p>
+                <form action="" method="POST">{% csrf_token %}
+
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+  
+                    <button type="submit">Ingresar!</button>
+                </form>
+                <hr>
+                <a href="{% url 'Register' %}">Crear una nueva cuenta</a>
+            </div>
+        </div>
+    </header>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "parent.html" %}
+
+{% load static %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block logo %}
+{% endblock %}
+
+{% block content %}
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-5">
+                {% if teammembers %}
+                <h1>About us</h1>
+                <p class="lead mb-0">Team members</p>
+                    <ul>
+                        {% for teammember in teammembers%}
+                                <li> {{teammember.name}} {{teammember.lastname}} </li>
+                                <li> {{teammember.email}} </li>
+                                <li> {{teammember.githubaccount}} </li>
+                                <br>
+                        {% endfor %}
+                    </ul>   
+                {% else %}
+                    <h1>No team members were added yet</h1>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+{% endblock %}

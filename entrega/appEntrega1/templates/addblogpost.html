@@ -1,0 +1,49 @@
+{% extends "parent.html" %}
+
+{% load static %}
+
+{% block title %}
+Add new post
+{% endblock %}
+
+{% block logo %}
+{% endblock %}
+
+{% block content %}
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1>Add new post</h1>
+                <form action="{% url 'AddBlogPost' %}" method="POST">{% csrf_token %}
+                    <h3>Add post details</h3>
+                    <table>
+                        {{ myForm.as_table }}
+                    </table>
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block sidecontent %}
+{% endblock %}
+
+
+def updateprofile(request):
+    usuario = request.user
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST)
+        if form.is_valid:
+
+            usuario.email= form.cleaned_data.get('email')
+            usuario.password1= form.cleaned_data.get('password1')
+            usuario.password2= form.cleaned_data.get('password2')
+            usuario.fistname= form.cleaned_data.get('fistname')
+            usuario.lastname= form.cleaned_data.get('lastname')
+            usuario.save()
+        
+            return render(request, 'index.html', {'message':"The profile has been updated."})
+    else: 
+        form = UserUpdateForm()
+    return render (request, 'updateprofile.html', {'form':form, 'usuario':usuario})

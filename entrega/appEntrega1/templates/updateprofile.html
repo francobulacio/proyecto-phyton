@@ -1,0 +1,29 @@
+{% extends "parent.html" %}
+
+{% load static %}
+
+{% block title %}
+Update Profile!
+{% endblock %}
+
+{% block logo %}
+{% endblock %}
+
+{% block content %}
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1>Update Profile!</h1>
+                <p class="lead mb-0">Modifica los datos que necesites:</p>
+                <form action="" method="POST">{% csrf_token %}
+
+                    <table>
+                        {{ myForm.as_table }}
+                    </table>
+  
+                    <button type="submit">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </header>
+{% endblock %}

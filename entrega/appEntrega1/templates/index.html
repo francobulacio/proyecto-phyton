@@ -1,0 +1,49 @@
+{% extends "parent.html" %}
+
+{% block title %}
+Blog Home
+{% endblock %}
+
+{% block logo %}
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder">Welcome to Blog Home!</h1>
+            <p class="lead mb-0">A CoderHouse course project</p>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <!-- Blog entries-->
+            <!-- Nested row for non-featured blog posts-->
+            {% if blogposts %}
+                <div class="row">
+                    {% for blogpost in blogposts%}
+                        <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                {% if user.is_authenticated %}
+                                    {% if user.is_staff %}
+                                        <a href="{% url 'UpdatePost' blogpost.id %}"><img src="https://img.icons8.com/bubbles/50/null/edit.png"/></a>
+                                        <a href="{% url 'DeletePost' blogpost.id %}"><img src="https://img.icons8.com/bubbles/50/null/delete-forever.png"/></a>
+                                    {% endif %}
+                                {% endif %}
+                                <h2 class="card-title">{{ blogpost.title }}</h2>
+                                <h4 class="card-title h4">{{ blogpost.subtitle }}</h4>
+                                <div class="small text-muted">{{ blogpost.category }}</div>
+                                <p class="card-text">{{ blogpost.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </div>
+            {% else %}
+                <div class="text-center my-5">
+                    <h1>{{message}}</h1>
+                </div>
+            {% endif %}
+</div>
+{% endblock %}

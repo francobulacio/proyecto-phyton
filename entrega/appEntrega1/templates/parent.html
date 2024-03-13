@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %}Blog{% endblock %}</title>
+        {% load static %}
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{%static 'appEntrega1/assets/favicon.ico' %}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{%static 'appEntrega1/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Index' %}"><img src="https://img.icons8.com/bubbles/50/null/home-page.png"/></a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'About' %}"><img src="https://img.icons8.com/bubbles/50/null/group.png"/></a></li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Profile' %}"><img src="https://img.icons8.com/bubbles/50/null/user-folder.png"/></a></li>
+                            {% if user.is_staff %}
+                                <li class="nav-item"><a class="nav-link" href="{% url 'AddBlogPost' %}"><img src="https://img.icons8.com/bubbles/50/null/add-file.png"/></a></li>
+                                <li class="nav-item"><a class="nav-link" href="admin/"><img src="https://img.icons8.com/bubbles/50/null/administrative-tools.png"/></a></li>
+                            {% endif %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}"><img src="https://img.icons8.com/bubbles/50/null/logout-rounded.png"/></a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Register' %}"><img src="https://img.icons8.com/bubbles/50/null/test-account.png"/></a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}"><img src="https://img.icons8.com/bubbles/50/null/login-rounded-right.png"/></a></li>
+                        {% endif %}
+
+                        <li class="nav-item"><a class="nav-link" href="{% url 'SearchPostSite' %}"><img src="https://img.icons8.com/bubbles/50/null/google-web-search.png"/></a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Contact' %}"><img src="https://img.icons8.com/bubbles/50/null/new-post.png"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        {% block logo %}
+        {% endblock %}
+        <!-- Page content-->
+        {% block content %}
+        {% endblock %}
+        {% block sidecontent %}
+        {% endblock %}
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Erika Zimmer 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{%static 'appEntrega1/js/scripts.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "parent.html" %}
+
+{% load static %}
+
+{% block title %}
+Contact Us!
+{% endblock %}
+
+{% block logo %}
+{% endblock %}
+
+{% block content %}
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1>Send us a message!</h1>
+                <form action="{% url 'Contact' %}" method="POST">{% csrf_token %}
+                    <table>
+                        {{ myForm.as_table }}
+                    </table>
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </header>
+{% endblock %}
